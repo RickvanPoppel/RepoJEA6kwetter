@@ -1,15 +1,11 @@
-package Dao.Memory.Interfaces;
+package Dao.JPA.Interfaces;
 
 import Domain.Kweet;
 
 import java.util.List;
 
-public interface KweetDAOcoll {
-    Kweet save(Kweet kweet);
-    boolean delete(long id);
-    Kweet get(long id);
-    List<Kweet> getAll();
-    List<Kweet> getMatchesByContent(String content);
+public interface KweetDAO extends GenericDAO<Kweet> {
+    List<Kweet> getMatchesByContent(String Content);
     List<Kweet> getKweetByHashtagId(long id);
     List<Kweet> getKweetsByMentionId(long id);
     List<Kweet> getKweetsByUserId(long id);

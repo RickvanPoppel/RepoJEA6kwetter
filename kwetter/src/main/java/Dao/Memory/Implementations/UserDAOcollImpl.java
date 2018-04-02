@@ -13,23 +13,23 @@ public class UserDAOcollImpl implements UserDAOcoll {
     memCollectionObject im = memCollectionObject.getInstance();
 
     public UserDAOcollImpl() {
-        // Empty constructor for dependency injection purposes.
+
     }
 
     @Override
-    public User save(User kwetteraar) {
+    public User save(User user) {
         //Invalid, return.
-        if (kwetteraar == null || kwetteraar.getUserName() == null || kwetteraar.getUserName().isEmpty())
+        if (user == null || user.getUserName() == null || user.getUserName().isEmpty())
             return null;
 
         //Non existing, add id.
-        if (kwetteraar.getId() == 0L)
-            kwetteraar.setId(im.useUserId());
+        if (user.getId() == 0L)
+            user.setId(im.useUserId());
 
         //Existing, update.
-        if (kwetteraar.getId() > 0L && im.getUsers().stream().filter(k->k.getId() == kwetteraar.getId()).count() == 0) {
-            im.getUsers().add(kwetteraar);
-            return kwetteraar;
+        if (user.getId() > 0L && im.getUsers().stream().filter(k->k.getId() == user.getId()).count() == 0) {
+            im.getUsers().add(user);
+            return user;
         }
 
         //Failed.
@@ -42,9 +42,9 @@ public class UserDAOcollImpl implements UserDAOcoll {
         if (id < 0L || id == 0L)
             return false;
 
-        User kwetteraar = im.getUsers().stream().filter(k->k.getId() == id).findAny().orElse(null);
-        if (kwetteraar != null)
-            im.getUsers().remove(kwetteraar);
+        User user = im.getUsers().stream().filter(k->k.getId() == id).findAny().orElse(null);
+        if (user != null)
+            im.getUsers().remove(user);
 
         return true;
     }
@@ -71,22 +71,22 @@ public class UserDAOcollImpl implements UserDAOcoll {
     }
 
     @Override
-    public void addFollower(long id, long idLeider) {
-        get(idLeider).addFollower(get(id));
+    public void addFollower(long id, long idLeader) {
+        get(idLeader).addFollower(get(id));
     }
 
     @Override
     public void register(String Username, String password) {
-        User kwetteraar = new User();
-        kwetteraar.setUserName(Username);
-        kwetteraar.setPassword(password);
-        save(kwetteraar);
+        User user = new User();
+        user.setUserName(Username);
+        user.setPassword(password);
+        save(user);
     }
 
     @Override
-    public boolean login(String username, String wachtwoord) {
+    public boolean login(String username, String password) {
         if(getByUsername(username) != null)
-            return getByUsername(username).getPassword().equals(wachtwoord);
+            return getByUsername(username).getPassword().equals(password);
         return false;
     }
 }
