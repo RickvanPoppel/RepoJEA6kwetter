@@ -8,7 +8,6 @@ import javax.persistence.Query;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.logging.Logger;
 
 public abstract class GenericDAOJPAimp<T> implements GenericDAO<T> {
 
