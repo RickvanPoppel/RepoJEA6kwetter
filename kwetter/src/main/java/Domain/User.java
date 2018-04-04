@@ -29,7 +29,7 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String rol;
+    private String role;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.MERGE)
     private List<Kweet> kweets;
@@ -122,12 +122,12 @@ public class User {
         this.password = (hashstring == null || hashstring.isEmpty()) ? password : hashstring;
     }
 
-    public String getRol() {
-        return rol;
+    public String getRole() {
+        return role;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public List<Kweet> getKweets() {
