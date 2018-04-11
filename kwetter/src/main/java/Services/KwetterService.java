@@ -8,6 +8,7 @@ import Domain.User;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.logging.Logger;
 import java.util.*;
 
 import static java.util.Comparator.comparing;
@@ -21,6 +22,7 @@ public class KwetterService implements Serializable{
     private baseUserService baseUserService;
     @Inject @AnnJPA
     private baseKweetService baseKweetService;
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     public KwetterService(){
 
@@ -52,7 +54,6 @@ public class KwetterService implements Serializable{
         kweet.setContent(content);
         kweet.setOwner(baseUserService.getUser(id));
         kweet.setDate(new Date());
-        baseKweetService.saveKweet(kweet);
 
         List<Hashtag> hashtags = findHashtags(content);
         hashtags.forEach(h -> {
@@ -66,8 +67,9 @@ public class KwetterService implements Serializable{
                 kweet.addMention(m);
             }
         });
-        return baseKweetService.updateKweet(kweet);
+        return baseKweetService.saveKweet(kweet);
     }
+
     public List<Kweet> getOwnAndFollowingKweets(long id){
         List<Kweet> kweets = new ArrayList<>();
         List<User> leaders = baseUserService.getFollowing(id);
@@ -115,6 +117,7 @@ public class KwetterService implements Serializable{
     public List<Hashtag> findHashtags(String content) {
         List<Hashtag> hashtags = new ArrayList<>();
         int count = content.length() - content.replace("#", "").length();
+        logger.severe(content + " "+ count);
         for (int i = 0; i < count; i++) {
             if (content.contains("#")) {
                 int startPos = content.indexOf('#');
@@ -128,12 +131,19 @@ public class KwetterService implements Serializable{
                     hashtagContent = content;
                     content = "";
                 }
-                if (baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)) == null)
+
+                //int check = 0;
+                logger.severe(hashtagContent);
+                if (baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)) == null){
                     baseHashtagService.addHashtag(hashtagContent.substring(1));
+                    logger.severe("adding new hashtag");
+                    //check++;
+                }
 
-                if (hashtags.stream().filter(h->h.getId() == baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)).getId()).findAny().orElse(null) == null)
+                if (hashtags.stream().filter(h->h.getId() == baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)).getId()).findAny().orElse(null) == null){
                     hashtags.add(baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)));
-
+                    logger.severe("adding existing hashtag");
+                }
             }
         }
         return hashtags;

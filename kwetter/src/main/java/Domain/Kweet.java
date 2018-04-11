@@ -19,7 +19,7 @@ public class Kweet {
     private Date date;
 
     @ManyToMany
-    @JoinTable(name = "table_hashtag"
+    @JoinTable(name = "t_table_hashtag"
             ,   joinColumns = @JoinColumn(name = "kweet_hashtag_id", referencedColumnName = "id")
             ,   inverseJoinColumns = @JoinColumn(name = "hashtag_hashtag_id", referencedColumnName = "id"))
     private List<Hashtag> hashtags;

@@ -114,10 +114,10 @@ public class KweetAPI {
     @POST
     @Path("/post/insert")
     @Produces(APPLICATION_JSON)
-    public detKweetDTO insertKweet(@FormParam("naam") String naam, @FormParam("content") String content, @Context HttpServletResponse response) {
+    public detKweetDTO insertKweet(@FormParam("name") String name, @FormParam("content") String content, @Context HttpServletResponse response) {
 
         response.setHeader("Access-Control-Allow-Origin" , "*");
-        User user = kwetterService.getBaseUserService().getUserByName(naam);
+        User user = kwetterService.getBaseUserService().getUserByName(name);
         Kweet kweet = kwetterService.sendKweet(user.getId(), content);
         detKweetDTO kdto = new detKweetDTO();
         if (kweet != null)
