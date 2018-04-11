@@ -1,5 +1,6 @@
 package Dao.JPA.Implementations;
 
+import Dao.JPA.Interfaces.AnnJPA;
 import Dao.JPA.Interfaces.HashtagDAO;
 import Domain.Hashtag;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-@Default
+@AnnJPA
 public class HashtagDAOJPAimp  extends GenericDAOJPAimp<Hashtag> implements HashtagDAO {
 
     public HashtagDAOJPAimp() {

@@ -1,5 +1,6 @@
 package Dao.JPA.Implementations;
 
+import Dao.JPA.Interfaces.AnnJPA;
 import Dao.JPA.Interfaces.UserDAO;
 import Domain.User;
 
@@ -7,7 +8,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 
 @Stateless
-@Default
+@AnnJPA
 public class UserDAOJPAimp  extends GenericDAOJPAimp<User> implements UserDAO {
 
     public UserDAOJPAimp(){

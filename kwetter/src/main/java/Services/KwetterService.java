@@ -1,29 +1,27 @@
 package Services;
 
-import Dao.Memory.Implementations.memCleaner;
+import Dao.JPA.Interfaces.AnnJPA;
 import Domain.Hashtag;
 import Domain.Kweet;
 import Domain.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.*;
 
 import static java.util.Comparator.comparing;
 
 @Stateless
-public class KwetterService {
+public class KwetterService implements Serializable{
 
+    @Inject @AnnJPA
     private baseHashtagService baseHashtagService;
+    @Inject @AnnJPA
     private baseUserService baseUserService;
+    @Inject @AnnJPA
     private baseKweetService baseKweetService;
 
-    @Inject
-    public KwetterService(baseHashtagService bhs, baseKweetService bks, baseUserService bus){
-        this.baseHashtagService = bhs;
-        this.baseKweetService = bks;
-        this.baseUserService = bus;
-    }
     public KwetterService(){
 
     }
@@ -112,11 +110,6 @@ public class KwetterService {
         return baseUserService;
     }
 
-    //deprecated memory cleaner for collectionIMPL
-    public void voidMemory(){
-        memCleaner Mc = new memCleaner();
-        Mc.clearMemory();
-    }
 
     //functional methods
     public List<Hashtag> findHashtags(String content) {

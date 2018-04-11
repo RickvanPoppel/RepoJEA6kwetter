@@ -1,17 +1,23 @@
 package Services;
 
+import Dao.JPA.Interfaces.AnnJPA;
 import Dao.JPA.Interfaces.HashtagDAO;
 import Domain.Hashtag;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
-public class baseHashtagService {
+@AnnJPA @Stateless
+public class baseHashtagService implements Serializable {
+
+    @Inject @AnnJPA
     private HashtagDAO hashtagDAO;
 
-    @Inject
-    public baseHashtagService(HashtagDAO hDAO){
-        this.hashtagDAO = hDAO;
+
+    public baseHashtagService(){
+
     }
 
     public List<Hashtag> getHashtags(){

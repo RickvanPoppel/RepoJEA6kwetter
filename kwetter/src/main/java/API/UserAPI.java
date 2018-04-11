@@ -3,7 +3,6 @@ package API;
 import DTO.DTOConvert;
 import DTO.UserDTO;
 import DTO.detUserDTO;
-import Domain.Kweet;
 import Domain.User;
 import Services.KwetterService;
 import WebSocket.SessionLister;
@@ -21,7 +20,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/user")
 public class UserAPI {
-    KwetterService Ks;
+
+    private KwetterService Ks;
 
     @Inject
     public UserAPI(KwetterService ks) {

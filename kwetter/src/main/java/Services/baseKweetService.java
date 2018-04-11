@@ -1,19 +1,25 @@
 package Services;
 
+import Dao.JPA.Interfaces.AnnJPA;
 import Dao.JPA.Interfaces.KweetDAO;
 import Domain.Kweet;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-public class baseKweetService {
+@AnnJPA @Stateless
+public class baseKweetService implements Serializable {
+
+
+    @Inject @AnnJPA
     private KweetDAO kweetDAO;
 
-    @Inject
-    public baseKweetService(KweetDAO kDAO){
-        this.kweetDAO = kDAO;
+    public baseKweetService(){
     }
+
     public List<Kweet> getKweets() {
         return kweetDAO.getAll();
     }

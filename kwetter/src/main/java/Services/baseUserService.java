@@ -1,18 +1,23 @@
 package Services;
 
+import Dao.JPA.Interfaces.AnnJPA;
 import Dao.JPA.Interfaces.UserDAO;
 import Domain.Kweet;
 import Domain.User;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
-public class baseUserService {
+@AnnJPA @Stateless
+public class baseUserService implements Serializable {
+
+    @Inject @AnnJPA
     private UserDAO userDAO;
 
-    @Inject
-    public baseUserService(UserDAO userDAO){
-        this.userDAO = userDAO;
+    public baseUserService(){
+
     }
     public List<User> getUsers(){
         return userDAO.getAll();
