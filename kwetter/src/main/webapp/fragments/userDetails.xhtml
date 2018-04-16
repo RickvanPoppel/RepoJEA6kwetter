@@ -1,0 +1,35 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div class="row blocked">
+        <div class="row title">
+            <div class="col-md-12">
+                <span>
+                    <b>#{componentTitle}:</b>
+                </span>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-md-2">
+                naam:
+            </div>
+            <div class="col-md-10">
+                #{currentUser.userName}
+            </div>
+            <div class="col-md-2">
+                locatie:
+            </div>
+            <div class="col-md-2">
+                website:
+            </div>
+            <div class="col-md-10">
+                <a href="#{currentUser.eMail}"> #{currentUser.eMail} </a>
+            </div>
+            <div class="col-md-2">
+                bio:
+            </div>
+            <div class="col-md-10">
+                #{currentUser.bio}
+            </div>
+        </div>
+    </div>
+</ui:fragment>

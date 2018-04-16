@@ -1,0 +1,27 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <div class="row blocked">
+            <div class="row title">
+                <div class="col-md-12">
+                    <span>
+                        <b>#{componentTitle}:</b>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <c:if test="#{kweetList.size() > 0}">
+                    <c:forEach var="kweet" items="#{kweetList}">
+                        <ui:include src="singleKweet.xhtml">
+                            <ui:param name="singleKweet" value="#{kweet}" />
+                        </ui:include>
+                    </c:forEach>
+                </c:if>
+                <c:if test="#{kweetList.size() == 0}">
+                    <ui:include src="emptyBlockMessage.xhtml">
+                        <ui:param name="message" value="You do not have any Kweets yet, send one!" />
+                    </ui:include>
+                </c:if>
+            </div>
+    </div>
+</ui:fragment>

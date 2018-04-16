@@ -1,0 +1,20 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="row blocked">
+        <div class="row title">
+            <div class="col-md-12">
+                <span>
+                    <b>#{componentTitle}:</b>
+                </span>
+                <h:form>
+                    <h:inputText value="#{ProfileController.kweetSearchString}" required="true" />
+                    <h:commandButton value="Search Kweet..." action="#{ProfileController.searchKweets}" >
+                        <f:ajax execute="@form" render="kweetList" />
+                    </h:commandButton>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</ui:fragment>

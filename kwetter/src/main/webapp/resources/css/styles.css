@@ -1,0 +1,53 @@
+body
+{
+    margin:0;
+    padding:0;
+    background-color: lightgray;
+    color: black;
+}
+.blocked
+{
+    border: 1px black solid;
+    padding: 10px;
+    background-color: lightgray;
+    margin: 0 0 5px 0;
+}
+.blockedc
+{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.kweet-text
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.kweet
+{
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px black solid;
+}
+.kweet:last-child
+{
+    border: none;
+}
+.title
+{
+    margin: 0;
+}
+.content
+{
+    margin: 10px;
+}
+a
+{
+    text-decoration: none;
+    color: black;
+}
+.menubar
+{
+    color: white;
+    background-color: black;
+    height: 30px;
+}

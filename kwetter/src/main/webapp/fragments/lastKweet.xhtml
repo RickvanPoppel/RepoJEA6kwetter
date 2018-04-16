@@ -1,0 +1,23 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <div class="row blocked">
+        <div class="row title">
+            <div class="col-md-12">
+                <span>
+                    <b>#{componentTitle}:</b>
+                </span>
+            </div>
+        </div>
+        <c:if test="#{ProfileController.user.kweets.size() > 0}">
+            <ui:include src="singleKweet.xhtml">
+                <ui:param name="singleKweet" value="#{ProfileController.lastKweet}" />
+            </ui:include>
+        </c:if>
+        <c:if test="#{ProfileController.user.kweets.size() == 0}">
+            <ui:include src="emptyBlockMessage.xhtml">
+                <ui:param name="message" value="You do not have any kweets, send a kweet!" />
+            </ui:include>
+        </c:if>
+    </div>
+</ui:fragment>
