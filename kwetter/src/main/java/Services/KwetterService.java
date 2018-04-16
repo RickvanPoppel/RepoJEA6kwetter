@@ -136,13 +136,12 @@ public class KwetterService implements Serializable{
                 logger.severe(hashtagContent);
                 if (baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)) == null){
                     baseHashtagService.addHashtag(hashtagContent.substring(1));
-                    logger.severe("adding new hashtag");
+                    logger.info("adding new hashtag");
                     //check++;
                 }
 
                 if (hashtags.stream().filter(h->h.getId() == baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)).getId()).findAny().orElse(null) == null){
                     hashtags.add(baseHashtagService.getExactlyMatchingHashtag(hashtagContent.substring(1)));
-                    logger.severe("adding existing hashtag");
                 }
             }
         }
